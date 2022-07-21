@@ -1,0 +1,36 @@
+package com.example.forintellias.service;
+
+import com.example.forintellias.entity.User;
+import com.example.forintellias.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
+
+@Service
+public class UserService {
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public List<User> showUsers() {
+        return userRepository.findAll();
+    }
+
+    public User getUser(long id) {
+        return userRepository.findById(id).get();
+    }
+
+    public User saveUser(User user) {
+        userRepository.save(user);
+        return user;
+    }
+
+    public void deleteUser(long id) {
+        userRepository.deleteById(id);
+    }
+}
