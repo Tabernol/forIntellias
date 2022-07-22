@@ -1,10 +1,17 @@
 package com.example.forintellias.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.lang.NonNullFields;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -14,8 +21,16 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
+    private Long userId;
+    @NotNull
     private String userName;
+    @NotNull
     private String userSurname;
-    private int userAmount;
+    @NotNull
+    private double userAmount;
+
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Fruit> userBucket = new ArrayList<>();
+
 }
