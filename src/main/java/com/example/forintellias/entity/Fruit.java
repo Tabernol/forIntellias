@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -27,6 +28,12 @@ public class Fruit {
     @NotNull
     private double fruitPrice;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+//    @ManyToOne
+//    private User user;
+
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "User_Fruit",
+            joinColumns = @JoinColumn(name = "fruit_id"),
+            inverseJoinColumns = @JoinColumn(name = "User_id"))
     private List<User> buyer;
 }

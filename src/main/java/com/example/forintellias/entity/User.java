@@ -29,8 +29,15 @@ public class User {
     @NotNull
     private double userAmount;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JsonIgnore
-    private List<Fruit> userBucket = new ArrayList<>();
+    @JoinTable(name = "User_Fruit",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "fruit_id")
+    )
+    private List<Fruit> userBucket;
+
+//    @ManyToOne
+//    private Fruit fruit;
 
 }
