@@ -42,19 +42,8 @@ public class FruitService {
         return  fruit;
     }
 
-  //  public void add
-
     public List<User> whoBuyFruit (Long fruitId){
         Fruit fruit = getFruit(fruitId);
         return fruit.getBuyer();
     }
-
-//    public Fruit saveOrUpdate(Long id, Fruit fruit){
-//        Fruit fruitToEdit = getFruit(id);
-//        fruitToEdit.setFruitName(fruit.getFruitName());
-//        fruitToEdit.setFruitPrice(fruit.getFruitPrice());
-//        return fruitToEdit;
-//    }
-
-
 }

@@ -15,12 +15,10 @@ import java.util.stream.StreamSupport;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private final FruitService fruitService;
 
     @Autowired
-    public UserService(UserRepository userRepository, FruitService fruitService) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.fruitService = fruitService;
     }
 
     public List<User> showUsers() {
@@ -30,7 +28,8 @@ public class UserService {
     }
 
     public User getUser(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException(id));
     }
 
     public User saveUser(User user) {
@@ -42,22 +41,8 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public User buyFruit(Long userId, Long fruitId) {
-        User user = getUser(userId);
-        Fruit fruit = fruitService.getFruit(fruitId);
-        user.getUserBucket().add(fruit);
-        return  user;
-    }
-
     public List<Fruit> showBucket(Long userId){
         User user = getUser(userId);
         return user.getUserBucket();
     }
-
-//    public User removeFruit(Long userId, Long fruitId){
-//        User user = getUser(userId);
-//        Fruit fruit = fruitService.deleteFruit(fruitId);
-//        user.removeFruitFromBucket(fruit);
-//        return user;
-//    }
 }

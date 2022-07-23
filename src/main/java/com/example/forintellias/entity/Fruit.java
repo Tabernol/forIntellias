@@ -28,9 +28,6 @@ public class Fruit {
     @NotNull
     private double fruitPrice;
 
-//    @ManyToOne
-//    private User user;
-
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "User_Fruit",
             joinColumns = @JoinColumn(name = "fruit_id"),

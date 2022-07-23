@@ -33,11 +33,6 @@ public class User {
     @JsonIgnore
     @JoinTable(name = "User_Fruit",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "fruit_id")
-    )
+            inverseJoinColumns = @JoinColumn(name = "fruit_id"))
     private List<Fruit> userBucket;
-
-//    @ManyToOne
-//    private Fruit fruit;
-
 }

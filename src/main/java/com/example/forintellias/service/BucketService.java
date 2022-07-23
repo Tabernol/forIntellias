@@ -21,12 +21,11 @@ public class BucketService {
         Fruit fruit = fruitService.getFruit(fruitId);
         User user = userService.getUser(userId);
         if (user.getUserAmount() >= fruit.getFruitPrice()) {
-            userService.buyFruit(userId,fruitId);
+            user.getUserBucket().add(fruit);
             user.setUserAmount((user.getUserAmount() - fruit.getFruitPrice()));
             userService.saveUser(user);
             fruit.getBuyer().add(user);
             fruitService.saveFruit(fruit);
-           // System.out.println("YOU BUY FRUIT " + fruit);
         }
         else {
             throw new AmountAboutZero();
