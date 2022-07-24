@@ -3,7 +3,6 @@ package com.example.forintellias.controller;
 import com.example.forintellias.dto.FruitDto;
 import com.example.forintellias.entity.Fruit;
 import com.example.forintellias.entity.User;
-import com.example.forintellias.repository.FruitRepository;
 import com.example.forintellias.service.FruitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

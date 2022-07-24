@@ -25,11 +25,4 @@ public class BucketController {
     public User buyFruit(@PathVariable Long userId, @PathVariable Long fruitId){
        return bucketService.buyFruit(userId,fruitId);
     }
-
-    @GetMapping("/buyers/{fruitId}")
-    public List<User> whoBuyFruit(@PathVariable Long fruitId) {
-        Fruit fruit = fruitService.getFruit(fruitId);
-        List<User> users = fruit.getBuyer();
-        return users;
-    }
 }

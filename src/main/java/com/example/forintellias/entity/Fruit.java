@@ -1,25 +1,22 @@
 package com.example.forintellias.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
-import org.springframework.lang.Nullable;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Table(name = "fruits")
 public class Fruit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long fruitId;
 
     @NotNull
@@ -28,9 +25,12 @@ public class Fruit {
     @NotNull
     private double fruitPrice;
 
+    @JsonIgnore
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(name = "User_Fruit",
+    @JoinTable(name = "Fruit_User",
             joinColumns = @JoinColumn(name = "fruit_id"),
             inverseJoinColumns = @JoinColumn(name = "User_id"))
     private List<User> buyer;
+
 }
+

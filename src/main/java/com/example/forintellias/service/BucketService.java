@@ -23,14 +23,22 @@ public class BucketService {
         if (user.getUserAmount() >= fruit.getFruitPrice()) {
             user.getUserBucket().add(fruit);
             user.setUserAmount((user.getUserAmount() - fruit.getFruitPrice()));
+            System.out.println(user);
             userService.saveUser(user);
             fruit.getBuyer().add(user);
             fruitService.saveFruit(fruit);
-        }
-        else {
+        } else {
             throw new AmountAboutZero();
         }
         return user;
-
     }
+
+//    public void removeFruitFromBucket(Long fruitId) {
+//        Fruit fruit = fruitService.getFruit(fruitId);
+//        userService.showUsers()
+//                .stream()
+//                .filter(user -> user.getUserBucket().contains(fruit))
+//                .map(user -> user.getUserBucket().remove(fruit));
+//
+//    }
 }
