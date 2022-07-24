@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ForIntelliasApplication {
 
     public static void main(String[] args) {
-
         SpringApplication.run(ForIntelliasApplication.class, args
         );
     }

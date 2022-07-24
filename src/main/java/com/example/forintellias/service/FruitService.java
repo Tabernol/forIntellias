@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
-public class FruitService {
+public class FruitService implements FruitServiceIntr{
     private final FruitRepository fruitRepository;
 
 
